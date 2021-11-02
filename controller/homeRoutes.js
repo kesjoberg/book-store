@@ -1,24 +1,24 @@
 const router = require('express').Router();
-const { User } = require('../models');
+const { Book } = require('../models');
 const withAuth = require('../utils/auth');
 
 router.get('/', async (req, res) => {
-
   try {
-    // // Get all projects and JOIN with user data
-    // const bookOfMonth = await Project.findAll({
-    //   include: [
-    //     {
-    //       model: User,
-    //       attributes: ['name'],
-    //     },
-    //   ],
-    // });
-    // // Serialize data so the template can read it
-    // const projects = projectData.map((project) => project.get({ plain: true }));
+    const bookData = await Book.findAll({
+      include: [
+        {
+          model: Book,
+          attributes: ['title', 'author', 'bookCover'],
+        },
+      ],
+    });
+   
+    const books = bookData.map((book) => book.get({ plain: true }));
 
-    // // Pass serialized data and session flag into template
-    res.render('homepage')
+   
+    res.render('homepage', {
+      ...books,
+    });
   } catch (err) {
     res.status(500).json(err);
   }
@@ -29,8 +29,8 @@ router.get('/book/:id', async (req, res) => {
     const bookData = await Book.findByPk(req.params.id, {
       include: [
         {
-          model: User,
-          attributes: ['name'],
+          model: Book,
+          attributes: ['title', 'author', 'bookCover', 'description'],
         },
       ],
     });
@@ -58,6 +58,25 @@ router.get('/profile', withAuth, async (req, res) => {
 
     res.render('profile', {
       ...user,
+      logged_in: true
+    });
+  } catch (err) {
+    res.status(500).json(err);
+  }
+});
+
+router.get('/cart', withAuth, async (req, res) => {
+  try {
+    // Find the logged in user based on the session ID
+    const orderData = await Order.findByPk(req.session.user_id, {
+      attributes: { exclude: ['password'] },
+      include: [{ model: Order }],
+    });
+
+    const order = orderData.get({ plain: true });
+
+    res.render('cart', {
+      ...order,
       logged_in: true
     });
   } catch (err) {
