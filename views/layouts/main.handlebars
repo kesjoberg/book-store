@@ -5,64 +5,35 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Book Store on 7th Street</title>
-    <style>
-        .split {
-    height: 100%;
-    width: 50%;
-    position: fixed;
-    z-index: 1;
-    top: 0;
-    overflow-x: hidden;
-    padding-top: 20px;
-  }
-  .left {
-    left: 0;
-    background-color: rgb(113, 0, 128);
-  }
-  .right {
-    right: 0;
-    background-color:  purple;
-  }
-  .centered {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  text-align: center;
-}
-    .centered img {
-  width: 150px;
-  border-radius: 50%;
-}
-    </style>
+    <link rel="stylesheet" href="/css/jass.css">
+    <link rel="stylesheet" href="/css/style.css">
 </head>
 
 <body>
-  <header>
-    <h1>Welcome to the Four Seasons Museum</h1>
-  </header>
-  <nav>
-    <a href="/">Home</a>
-    <!-- If the user is logged in, show a logout button -->
-    {{#if loggedIn}}
-    <button id="logout" class="btn-no-style">Logout</button>
-    {{else}}
-    <!-- Otherwise, show a link to login -->
-    <a href="/login">Login</a>
-    {{/if}}
-  </nav>
-  <main>
-    <aside>
-      <h2>Enjoy the books!</h2>
-    </aside>
-    <div class="books">
+  <div class="flex-column justify-space-around">
+    <header class="display-flex justify-space-between align-center p-2">
+      <h1>
+        <span></span>
+        <a href="/">Book store</a>
+      </h1>
+      <nav class="menu">
+        <ul>
+          {{#each profile}}
+          <li><a href="/profile">{{name}}</a></li>
+          {{/each}}
+          {{#each cart}}
+          <li><a href="{{item}}">{{itemName}}</a></li>
+          {{/each}}
+        </ul>
+      </nav>
+    </header>
+    <main class="container container-fluid mt-5">
       {{{body}}}
-    </div>
-  </main>
-  <!-- If the user is logged in, load the JS script for when they logout -->
-  {{#if loggedIn}}
-  <script src="/js/logout.js"></script>
-  {{/if}}
+    </main>
+    <footer>
+
+    </footer>
+  </div>
 </body>
 
 </html>
