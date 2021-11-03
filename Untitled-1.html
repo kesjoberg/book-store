@@ -1,23 +1,27 @@
-{{#each projects as |project| }}
-<div class="row mb-4 project">
-  <div class="col-md-5">
-    <h2>
-      <!-- Call helper function with triple brackets to render the emoji span as HTML -->
-      {{{get_emoji}}}
-      <a href="/project/{{project.id}}">{{project.name}}</a>
-    </h2>
-    <p>
-      <span for="img" aria-label="money">💲</span>
-      <!-- Pass needed_funding value to the helper function -->
-      <span class="dollar-amount">{{format_amount project.needed_funding}}</span>
-      needed!
-    </p>
-    <p>Created by {{project.user.name}} on {{format_date project.date_created}}</p>
+<body>
+  <div class="flex-column justify-space-around">
+    <header class="display-flex justify-space-between align-center p-2">
+      <h1>
+        <span></span>
+        <a href="/">Book store</a>
+      </h1>
+      <nav class="menu">
+        {{#each logged_in}}
+        <li> <a href="/profile">profile</a> |
+        <button class="no-button" id="logout">logout</button> </li>
+        {{else}}
+        <li><a href="/login">login</a></li>
+        {{/each}}
+        <li><a href="/cart.html"></a></li>
+      </nav>
+    </header>
+    <main class="container container-fluid mt-5">
+      {{{body}}}
+    </main>
+    <footer>
+
+    </footer>
   </div>
-  <div class="col-md-7">
-    <p>
-      {{project.description}}
-    </p>
-  </div>
-</div>
-{{/each}}
+</body>
+
+</html>
