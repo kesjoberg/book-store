@@ -3,7 +3,7 @@ const userRoutes = require('./userRoutes');
 const orderRoutes = require('./orderRoutes');
 const commentRoutes = require('./commentRoutes');
 
-router.use('/user', userRoutes);
+router.use('/users', userRoutes);
 router.use('/orders', orderRoutes);
 router.use('/comments', commentRoutes);
 
