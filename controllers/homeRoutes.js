@@ -14,12 +14,13 @@ router.get('/', async (req, res) => {
     });
    
     const books = bookData.map((book) => book.get({ plain: true }));
-
+    console.log('string')
    
     res.render('homepage', {
       ...books,
     });
-  } catch (err) {
+  } catch (err) 
+  { console.log(err)
     res.status(500).json(err);
   }
 });
