@@ -33,4 +33,4 @@ Order.hasMany(Book, {
   onDelete: 'CASCADE'
 });
 
-module.exports = { User, Comment, Book, Order };
+module.exports = {User, Comment, Book, Order};
