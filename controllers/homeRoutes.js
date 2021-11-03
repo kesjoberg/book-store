@@ -5,21 +5,16 @@ const withAuth = require('../utils/auth');
 router.get('/', async (req, res) => {
   try {
     const bookData = await Book.findAll({
-      include: [
-        {
-          model: Book,
-          attributes: ['title', 'author', 'bookCover'],
-        },
-      ],
-    });
-   
+  
+    }); 
     const books = bookData.map((book) => book.get({ plain: true }));
-
+    console.log('string')
    
     res.render('homepage', {
       ...books,
     });
-  } catch (err) {
+  } catch (err) 
+  { console.log(err)
     res.status(500).json(err);
   }
 });

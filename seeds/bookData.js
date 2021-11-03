@@ -9,7 +9,7 @@ const bookData = [
     },
     {
         title: 'Where The Red Fern Grows',
-        author: 'Bradon Mull',
+        author: 'Wilson Rawls',
         description: "Where the Red Fern Grows is a 1961 children's novel by Wilson Rawls about a boy who buys two hunting dogs.",
         bookCover: 'tbd',
     },
@@ -62,4 +62,4 @@ const bookData = [
         bookCover: 'tbd',
     },
 
-];
+]; 

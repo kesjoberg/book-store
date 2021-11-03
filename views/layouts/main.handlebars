@@ -13,18 +13,14 @@
   <div class="flex-column justify-space-around">
     <header class="display-flex justify-space-between align-center p-2">
       <h1>
-        <span></span>
         <a href="/">Book store</a>
       </h1>
       <nav class="menu">
-        <ul>
-          {{#each profile}}
-          <li><a href="/profile">{{name}}</a></li>
-          {{/each}}
-          {{#each cart}}
-          <li><a href="{{item}}">{{itemName}}</a></li>
-          {{/each}}
-        </ul>
+        <li> <a href="/profile">profile</a> |
+        <button class="no-button" id="logout">logout</button> </li>
+        <li><a href="/login">login</a></li>
+        <li><a href="/cart">Cart</a></li>        
+        
       </nav>
     </header>
     <main class="container container-fluid mt-5">
