@@ -62,4 +62,4 @@ const bookData = [
         bookCover: 'tbd',
     },
 
-];
+]; 
