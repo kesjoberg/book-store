@@ -27,6 +27,14 @@ User.init(
       validate: {
         len: [4]
       }
+    },
+    order_id : {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+      references: {
+        model:'order',
+        id: 'id',
+      },
     }
   },
   {
