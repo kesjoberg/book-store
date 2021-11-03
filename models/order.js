@@ -17,9 +17,13 @@ Order.init(
       primaryKey: true,
       autoIncrement: true
     },
-    username: {
-      type: DataTypes.STRING,
-      allowNull: false
+    user_id: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+      references: {
+        model:'user',
+        id: 'id',
+      }
     },
     quantity: {
       type: DataTypes.DECIMAL,
@@ -34,7 +38,7 @@ Order.init(
       validate: {
         isDecimal: true
       }
-    },
+    }
   },
   
   {  
