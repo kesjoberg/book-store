@@ -17,13 +17,15 @@
         <a href="/">Book store</a>
       </h1>
       <nav class="navbar">
-        <ul>
-        {{!-- <li> <a href="/profile">profile</a> |
-        <button class="no-button" id="logout">logout</button> </li> --}}
-        <li> <a href="/profile">profile</a></li>
-        <li><a href="/login">login</a></li>
-        <li><a href="/cart">Cart</a></li>  
-        </ul>
+        
+        {{#if logged_in}}
+        <a href="/profile">profile</a> |
+        <button class="no-button" id="logout">logout</button>
+        {{else}}
+        <a href="/login">login</a>
+        {{/if}}
+        <a href="/cart">Cart</a> 
+     
       </nav>
     </header>
     <main class="container container-fluid mt-5">
@@ -34,5 +36,5 @@
     </footer>
   </div>
 </body>
-
+<script src="/js/logout.js"></script>
 </html>
