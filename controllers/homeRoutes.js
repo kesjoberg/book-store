@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const { Book } = require('../models');
+const {Order, User, Book } = require('../models');
 const withAuth = require('../utils/auth');
 
 router.get('/', async (req, res) => {
@@ -62,17 +62,19 @@ router.get('/profile', withAuth, async (req, res) => {
 
 router.get('/cart', withAuth, async (req, res) => {
   try {
+
+    console.log("req.session.user_id",req.session.user_id);
     // Find the logged in user based on the session ID
-    const orderData = await Order.findByPk(req.session.user_id, {
-      attributes: { exclude: ['password'] },
-      include: [{ model: Order }],
+    const orderData = await Order.findAll({ 
+      where: { user_id: req.session.user_id}
     });
 
-    const order = orderData.get({ plain: true });
+    const order = orderData.map((o) => o.get({ plain: true }));
+
+    console.log("*****",order);
 
     res.render('cart', {
-      ...order,
-      logged_in: true
+      order: order
     });
   } catch (err) {
     res.status(500).json(err);
