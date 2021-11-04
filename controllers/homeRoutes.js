@@ -19,24 +19,18 @@ router.get('/', async (req, res) => {
   }
 });
 
-router.get('/book/:id', async (req, res) => {
+router.get('/book/:id', withAuth, async (req, res) => {
   try {
-    const bookData = await Book.findByPk(req.params.id, {
-      include: [
-        {
-          model: Book,
-          attributes: ['title', 'author', 'bookCover', 'description'],
-        },
-      ],
-    });
+    const bookData = await Book.findByPk(req.params.id);
 
     const book = bookData.get({ plain: true });
-
-    res.render('book', {
-      ...book,
+    console.log(book);
+    res.render('single-book', {
+      book,
 
     });
   } catch (err) {
+    console.log(err);
     res.status(500).json(err);
   }
 });
