@@ -42,14 +42,14 @@ header {
   padding-top: 10px;
 }
 
-book-card {
+.book-card {
   width: 250px;
   box-shadow: 0 4px 8px 0 gray;
   font-family: Verdana, Geneva, Tahoma, sans-serif;
   text-align: center;
 }
 
-book-card-header {
+.book-card-header {
   font-size: larger;
 }
 

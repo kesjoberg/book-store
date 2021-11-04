@@ -9,9 +9,9 @@ router.get('/', async (req, res) => {
     }); 
     const books = bookData.map((book) => book.get({ plain: true }));
     console.log('string')
-   
+    console.log(books)
     res.render('homepage', {
-      ...books,
+      books,
     });
   } catch (err) 
   { console.log(err)
