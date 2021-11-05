@@ -20,10 +20,35 @@ const commentFormHandler = async function(event) {
   }
 };
 
+const cartFormHandler = async function(event) {
+  event.preventDefault();
+
+  // const book_id = document.querySelector('#book1_id').value;
+  const user_id = document.querySelector('#user_id').value;
+  let quantity = document.querySelector('#quantity').value;
+
+  if (quantity) {
+    await fetch('/api/orders', {
+      method: 'POST',
+      quantity: JSON.stringify({
+        // book_id,
+        user_id,
+        quantity,
+      }),
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    });
+    document.querySelector('#quantity').value = '';
+    // document.location.reload();
+  }
+};
+
+
 document
   .querySelector('#new-comment-form')
   .addEventListener('submit', commentFormHandler);
 
-// document
-//   .querySelector('#cart-btn')
-//   .addEventListener('click', )
+document
+  .querySelector('#new-cart-form')
+  .addEventListener('submit', cartFormHandler )
