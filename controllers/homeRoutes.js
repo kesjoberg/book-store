@@ -21,13 +21,15 @@ router.get('/', async (req, res) => {
 
 router.get('/book/:id', withAuth, async (req, res) => {
   try {
-    const bookData = await Book.findByPk(req.params.id);
+    const bookData = await Book.findByPk(req.params.id, {
+      include: [{ model: Comment, include: [User] }]
+    });
 
     const book = bookData.get({ plain: true });
-    console.log(book);
+    console.log(req.session.user_id);
     res.render('single-book', {
       book,
-
+      user_id: req.session.user_id
     });
   } catch (err) {
     console.log(err);
