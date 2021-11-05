@@ -31,6 +31,20 @@ header {
   font-size: larger;
 }
 
+
+#book-img {
+  width: 250px;
+}
+
+menu {
+  margin: 20px;
+  border-radius: 4px;
+  position: relative;
+  min-width: 300px;
+  min-height: 375px;
+}
+
+
 #navbar {
   list-style-type: none;
   margin: 0;

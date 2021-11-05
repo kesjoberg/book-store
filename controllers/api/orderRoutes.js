@@ -2,17 +2,26 @@ const router = require('express').Router();
 const { Book, Order } = require('../../models');
 const withAuth = require('../../utils/auth');
 
+
 router.post('/', withAuth, async (req, res) => {
+  // console.log(req.body.book_price)
+  // console.log(parseInt(req.body.book_price) * parseInt(req.body.quantity))
+
   try {
     const newOrder = await Order.create({
       ...req.body,
+      total: parseInt(req.body.book_price) * parseInt(req.body.quantity),
       user_id: req.session.user_id,
     });
 
-    res.status(200).json(newOrder);
+    const betterOrder = newOrder.get({plain:true})
+
+    res.status(200).json(betterOrder);
   } catch (err) {
+    console.log(err)
     res.status(400).json(err);
   }
+
 });
 
 router.put('/:id', (req, res) => {

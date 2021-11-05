@@ -1,23 +1,26 @@
-<section class="card book">
-  <img src={{book.bookCover}}>
+<section class="card single-book">
+  <img src={{book.bookCover}} id="book-img">
   <div class="book-details">
     <h3>{{book.title}}</h3>
     <p>By: {{book.author}}</p>
     <p>Description: {{book.description}}</p>
   </div>
 </section>
-<section class="comment-card">
-    <div class="card-body">
-      <p>{{comment.body}}</p>
-      <p>{{comment.user.username}}</p>
-    </div>
-</section>
+{{#each book.comments as |comment|}}
+  <section class="comment-card">
+      <div class="card-body">
+        <p>{{comment.body}}</p>
+        <p>{{comment.user.username}}</p>
+      </div>
+  </section>
+{{/each}}
 
   
   <div class="comment-card">
     <form class="form comment-form" id="new-comment-form">
       <div>
         <input type="hidden" name="book_id" id="book_id" value="{{book.id}}" />
+        <input type="hidden" name="user_id" id="user_id" value="{{user.id}}" />
         <label for"comment">Comment:</label>
         <textarea class="form-imput" type="text" id="comment"></textarea>
       </div>
@@ -30,8 +33,9 @@
   <div class="addToCart-card">
     <form class="form comment-form" id="new-cart-form">
       <div>
-        {{!-- <input type="hidden" name="book1_id" id="book1_id" value="{{book.id}}" /> --}}
-        <input type="hidden" name="user_id" id="user_id" value="{{user.id}}" />
+        <input type="hidden" name="book1_id" id="book1_id" value="{{book.id}}" />
+        <input type="hidden" name="book1_price" id="book1_price" value="{{book.price}}" />
+        <input type="hidden" name="user_id" id="qty_user_id" value="{{user_id}}" />
         <label for"cart">Quantity:</label>
         <input class="form-imput" type="text" id="quantity">
       </div>
