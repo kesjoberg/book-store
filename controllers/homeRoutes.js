@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const {Order, User, Book } = require('../models');
+const {Order, User, Book, Comment } = require('../models');
 const withAuth = require('../utils/auth');
 
 router.get('/', async (req, res) => {
@@ -19,24 +19,18 @@ router.get('/', async (req, res) => {
   }
 });
 
-router.get('/book/:id', async (req, res) => {
+router.get('/book/:id', withAuth, async (req, res) => {
   try {
-    const bookData = await Book.findByPk(req.params.id, {
-      include: [
-        {
-          model: Book,
-          attributes: ['title', 'author', 'bookCover', 'description'],
-        },
-      ],
-    });
+    const bookData = await Book.findByPk(req.params.id);
 
     const book = bookData.get({ plain: true });
-
-    res.render('book', {
-      ...book,
+    console.log(book);
+    res.render('single-book', {
+      book,
 
     });
   } catch (err) {
+    console.log(err);
     res.status(500).json(err);
   }
 });
@@ -46,11 +40,11 @@ router.get('/profile', withAuth, async (req, res) => {
     // Find the logged in user based on the session ID
     const userData = await User.findByPk(req.session.user_id, {
       attributes: { exclude: ['password'] },
-      include: [{ model: Book }],
+      include: [{ model: Book },{model:Order}, { model: Comment}],
     });
 
     const user = userData.get({ plain: true });
-
+    console.log(user)
     res.render('profile', {
       ...user,
       logged_in: true

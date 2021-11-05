@@ -24,7 +24,12 @@ Comment.belongsTo(Book, {
 });
 
 Comment.belongsTo(User, {
-  foreignKey: 'comment_id',
+  foreignKey: 'user_id',
+  onDelete: 'CASCADE'
+});
+
+Order.belongsTo(User, {
+  foreignKey: 'user_id',
   onDelete: 'CASCADE'
 });
 
