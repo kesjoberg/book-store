@@ -4,19 +4,24 @@
   <h4>Orders</h4>
   {{#each orders as |order|}}
     <section class="card">
-    {{id}}
-    {{quantity}}
-    {{total}}
+      <h5>Book: {{order.book.title}}</h5>
+      <img src={{book.bookCover}} id="cart-img">
+      <p>Qty: {{quantity}}</p>
+      <p>Total: ${{total}} </p>
+      <button class="btn btn1"id="order-update-delete-button" type="submit">Update or Delete Order</button>
     </section>
   {{/each}}
 
   <h4>Comments</h4>
   {{#each comments as |comment|}}
     <section class="card">
-    {{id}}
-    {{book_id}}
-    {{body}}
+    <h5>{{comment.book.title}}</h5>
+      <p> {{body}}</p>
+      <input type="hidden" id="comment-id" value="{{comment.id}}">
+      <button class="btn btn1"id="update-delete-button" type="submit">Update or Delete Comment</button>
+      
     </section>
   {{/each}}
 
 </div>
+<script src="/js/profile.js"></script>

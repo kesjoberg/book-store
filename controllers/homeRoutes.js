@@ -5,13 +5,14 @@ const withAuth = require('../utils/auth');
 router.get('/', async (req, res) => {
   try {
     const bookData = await Book.findAll({
-  
+    
     }); 
     const books = bookData.map((book) => book.get({ plain: true }));
-    console.log('string')
-    console.log(books)
+  
+    // console.log(books)
     res.render('homepage', {
       books,
+      logged_in: req.session.logged_in 
     });
   } catch (err) 
   { console.log(err)
@@ -29,7 +30,8 @@ router.get('/book/:id', withAuth, async (req, res) => {
     console.log(req.session.user_id);
     res.render('single-book', {
       book,
-      user_id: req.session.user_id
+      user_id: req.session.user_id,
+      logged_in: true,
     });
   } catch (err) {
     console.log(err);
@@ -42,7 +44,7 @@ router.get('/profile', withAuth, async (req, res) => {
     // Find the logged in user based on the session ID
     const userData = await User.findByPk(req.session.user_id, {
       attributes: { exclude: ['password'] },
-      include: [{ model: Book },{model:Order}, { model: Comment}],
+      include: [{model:Order, include: [Book]}, { model: Comment, include: [Book]}],
     });
 
     const user = userData.get({ plain: true });
@@ -56,13 +58,33 @@ router.get('/profile', withAuth, async (req, res) => {
   }
 });
 
+router.get('/update-comment/:id', withAuth, async (req,res) => {
+  try {
+    const commentData = await Comment.findByPk(req.params.id, {
+      include: [{ model: Book }]
+    });
+
+    const comment = commentData.get({ plain: true });
+    console.log(req.session.user_id);
+    res.render('update-comment', {
+      comment,
+      // user_id: req.session.user_id,
+      logged_in: true,
+    });
+  } catch (err) {
+    console.log(err);
+    res.status(500).json(err);
+  }
+})
+
 router.get('/cart', withAuth, async (req, res) => {
   try {
 
     console.log("req.session.user_id",req.session.user_id);
     // Find the logged in user based on the session ID
     const orderData = await Order.findAll({ 
-      where: { user_id: req.session.user_id}
+      where: { user_id: req.session.user_id},
+      include: [{ model: Book }]
     });
 
     const order = orderData.map((o) => o.get({ plain: true }));
@@ -70,7 +92,8 @@ router.get('/cart', withAuth, async (req, res) => {
     console.log("*****",order);
 
     res.render('cart', {
-      order: order
+      order: order,
+      logged_in: true,
     });
   } catch (err) {
     res.status(500).json(err);
@@ -80,7 +103,7 @@ router.get('/cart', withAuth, async (req, res) => {
 router.get('/login', (req, res) => {
   // If the user is already logged in, redirect the request to another route
   if (req.session.logged_in) {
-    res.redirect('/profile');
+    res.redirect('/');
     return;
   }
 
