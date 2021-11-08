@@ -86,6 +86,7 @@ ul#navbar li a:hover {
   border: 3px solid black;
   box-shadow: 1px 4px 8px 1px gray;
   font-size: medium;
+  background-color: rgb(186, 163, 207);
 }
 
 .comment-card {
@@ -95,6 +96,17 @@ ul#navbar li a:hover {
   border-radius: 5px;
   border: 1px solid rgb(46, 45, 45);
   padding: 1%;
+  background-color: rgb(186, 163, 207);
+}
+
+.comment-card text {
+  background-color: rgb(186, 163, 207);
+}
+
+.card-comment {
+  width: 300px;
+  height: 300px;
+  padding: 1%;
 }
 
 #cart-img {
@@ -103,4 +115,10 @@ ul#navbar li a:hover {
 .btn1 {
   background-color:rgb(114, 36, 148);
   color:honeydew;
+}
+
+.container-profile {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
 }

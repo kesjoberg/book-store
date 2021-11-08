@@ -8,11 +8,14 @@ const updateCommentForm= async () => {
 const updateOrderForm= async () => {
   document.location.replace(`/cart`);
 }
-  
-  document
-  .getElementById('update-delete-button')
-  .addEventListener('click', updateCommentForm);
 
-  document
-  .getElementById('order-update-delete-button')
-  .addEventListener('click', updateOrderForm);
+let comment = document.querySelectorAll('#update-delete-button');
+comment.forEach(btn => {
+  btn.addEventListener('click', updateCommentForm)
+})
+ 
+let cart = document.querySelectorAll('#order-update-delete-button');
+cart.forEach(btn => {
+  btn.addEventListener('click', updateOrderForm);
+})
+  

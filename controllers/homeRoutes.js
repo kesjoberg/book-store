@@ -88,12 +88,16 @@ router.get('/cart', withAuth, async (req, res) => {
     });
 
     const order = orderData.map((o) => o.get({ plain: true }));
-
-    console.log("*****",order);
+    let sum = 0;
+    order.forEach(function(item){
+      sum += parseInt(item.total);
+    })
+    console.log(sum);
 
     res.render('cart', {
       order: order,
       logged_in: true,
+      sum: sum,
     });
   } catch (err) {
     res.status(500).json(err);
