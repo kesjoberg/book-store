@@ -24,7 +24,7 @@ Book.hasMany(Comment, {
 });
 
 Comment.belongsTo(Book, {
-  foreignKey: 'comment_id',
+  foreignKey: 'book_id',
   onDelete: 'CASCADE'
 });
 
@@ -38,8 +38,13 @@ Order.belongsTo(User, {
   onDelete: 'CASCADE'
 });
 
-Order.hasMany(Book, {
-  foreignKey: 'order_id',
+// Order.hasMany(Book, {
+//   foreignKey: 'order_id',
+//   onDelete: 'CASCADE'
+// });
+
+Order.belongsTo(Book, {
+  foreignKey: 'book_id',
   onDelete: 'CASCADE'
 });
 

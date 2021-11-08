@@ -15,4 +15,44 @@ router.post('/', withAuth, async (req, res) => {
   }
 });
 
+// /api/comments/id
+router.put('/:id', withAuth, async (req, res) => {
+  try {
+    const [updatedComment] = await Comment.update(req.body, {
+        where: {
+          id: req.params.id,
+        },
+      });
+      console.log(req.body);
+    console.log('********** '+ updatedComment + " updated comment");
+    if (updatedComment >0) {
+      res.status(200).end();
+    } else {
+      res.status(404).end();
+    }
+  } catch (err) {
+    res.status(500).json(err);
+  }
+});
+
+
+// /api/comments/id
+router.delete('/:id', withAuth, async (req, res) =>{
+  try {
+    const [commentData] = await Comment.destroy({
+      where: {
+        id: req.params.id,
+      },
+    });
+
+    if (commentData > 0) {
+      res.status(200).end();
+    } else {
+      res.status(404).end();
+    }
+  } catch (err) {
+    res.status(500).json(err);
+  }
+})
+
 module.exports = router

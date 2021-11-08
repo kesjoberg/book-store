@@ -1,10 +1,10 @@
 <h2>Welcome to our bookstore! See offered books below</h2>
 
 {{#each books as |book|}}
-<section class="book-card">
+<section class="book-card justify-space-around p-1">
   <a href="/book/{{id}}">
     <header>{{title}}</header>
-    <img src={{bookCover}} id="book-img">
+    <img src={{bookCover}} id="book-img2">
   </a>
 </section>
 {{/each}}
