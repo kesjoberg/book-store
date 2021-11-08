@@ -24,17 +24,27 @@ router.post('/', withAuth, async (req, res) => {
 
 });
 
-router.put('/:id', (req, res) => {
-  Order.update(
-    req.body,
-    {
-      where: {
-        id: req.params.id,
-        user_id: req.session.user_id,
+router.put('/:id', withAuth, async (req, res) => {
+  try {
+    const [updatedOrder] = await Order.update({
+      ...req.body, 
+      total: parseInt(req.body.book_price) * parseInt(req.body.quantity),
+      user_id: req.session.user_id,
       },
-    })
-    .then( (updatedOrder) => res.json(updatedOrder) )
-    .catch( (err) => res.json(err));
+      {
+      where: {
+         id: req.params.id,
+       },
+      });
+      console.log(req.body);
+      if (updatedOrder >0) {
+        res.status(200).end();
+      } else {
+        res.status(404).end();
+      }
+  } catch (err) {
+    res.status(500).json(err);
+  } 
 });
 
 router.delete('/:id', withAuth, async (req, res) => {

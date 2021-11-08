@@ -15,6 +15,7 @@
                         <div>Total: ${{total}}</div>
                         <form class="update-cart">
                             <div>
+                                <input type="hidden" name="order_id" id="order-id" value="{{id}}" />
                                 <input type="hidden" name="book1_id" id="book1_id" value="{{book.id}}" />
                                 <input type="hidden" name="book1_price" id="book1_price" value="{{book.price}}" />
                                 <input type="hidden" name="user_id" id="qty_user_id" value="{{user_id}}" />
@@ -34,7 +35,7 @@
     {{/each}}
 
     <div>
-        <h2>Order Total: </h2>
+        <h2>Order Total: ${{sum}} </h2>
     </div>
 </div>
 
