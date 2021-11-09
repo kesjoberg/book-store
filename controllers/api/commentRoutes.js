@@ -18,7 +18,7 @@ router.post('/', withAuth, async (req, res) => {
 // /api/comments/id
 router.put('/:id', withAuth, async (req, res) => {
   try {
-    const [updatedComment] = await Comment.update(req.body, {
+    const updatedComment = await Comment.update(req.body, {
         where: {
           id: req.params.id,
         },
