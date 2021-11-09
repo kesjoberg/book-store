@@ -76,6 +76,24 @@ router.get('/update-comment/:id', withAuth, async (req,res) => {
     res.status(500).json(err);
   }
 })
+router.get('/update-cart/:id', withAuth, async (req,res) => {
+  try {
+    const orderData = await Order.findByPk(req.params.id, {
+      include: [{ model: Book }]
+    });
+
+    const order = orderData.get({ plain: true });
+    console.log(req.session.user_id);
+    res.render('update-cart', {
+      order,
+      user_id: req.session.user_id,
+      logged_in: true,
+    });
+  } catch (err) {
+    console.log(err);
+    res.status(500).json(err);
+  }
+})
 
 router.get('/cart', withAuth, async (req, res) => {
   try {

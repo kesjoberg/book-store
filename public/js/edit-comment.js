@@ -31,13 +31,9 @@ event.preventDefault();
       body: JSON.stringify({commentId, body, user_id, book_id}),
       headers: { 'Content-Type': 'application/json' },
     });
-    if (response.ok) {
+    
       document.location.replace('/profile');
-    } else {
-      alert('Failed to update post');
-    }  
   }
-
 
 }
   

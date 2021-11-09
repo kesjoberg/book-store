@@ -13,20 +13,8 @@
                         <p class="card-text"><small class="text-muted">Price: ${{book.price}}</small></p>
                         <div>Quantity Ordered: {{quantity}}</div>
                         <div>Total: ${{total}}</div>
-                        <form class="update-cart">
-                            <div>
-                                <input type="hidden" name="order_id" id="order-id" value="{{id}}" />
-                                <input type="hidden" name="book1_id" id="book1_id" value="{{book.id}}" />
-                                <input type="hidden" name="book1_price" id="book1_price" value="{{book.price}}" />
-                                <input type="hidden" name="user_id" id="qty_user_id" value="{{user_id}}" />
-                                <label for"cart">Updated Quantity:</label>
-                                <input class="form-imput" type="text" id="quantity">
-                            </div>
-                            <div class="form-group">
-                                <button class="btn btn1" id="cart-btn" type="submit">Update Cart</button>
-                                <button class="btn btn1" id="delete-btn" type="submit">Delete From Cart</button>
-                            </div>
-                        </form>
+                        
+                         <button class="btn btn1" id="cart-btn" data-id="{{id}}" type="submit">Update Cart</button>
                         
                     </div>
                 </div>
