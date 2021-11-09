@@ -1,11 +1,18 @@
-const commentId = document.querySelector('#comment-id').value;
+const commentId = document.querySelectorAll('#comment-id').value;
 
-  const deleteBtnHandler = async ()=> {
-    const response = await fetch(`/api/comments/${commentId}`, {
+  const deleteBtnHandler = async (event)=> {
+    if (event.target.hasAttribute('data-id')) {
+      const id= event.target.getAttribute('data-id');
+    console.log(id);
+    const response = await fetch(`/api/comments/${id}`, {
       method: 'DELETE'
     });
+    if (response.ok) {
       document.location.replace('/profile');
-    
+    } else {
+      alert('Failed to delete post');
+    }  
+  }
   };
 
 const updateFormHandler= async (event) => {
