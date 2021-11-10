@@ -26,7 +26,7 @@ router.post('/', withAuth, async (req, res) => {
 
 router.put('/:id', withAuth, async (req, res) => {
   try {
-    const [updatedOrder] = await Order.update({
+    const updatedOrder = await Order.update({
       ...req.body, 
       total: parseInt(req.body.book_price) * parseInt(req.body.quantity),
       user_id: req.session.user_id,

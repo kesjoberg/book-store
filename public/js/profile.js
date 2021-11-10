@@ -1,13 +1,18 @@
 const id = document.querySelector('#comment-id').value;
 
 
-const updateCommentForm= async () => {
-  document.location.replace(`/update-comment/${id}`);
-}
+const updateCommentForm= async (event) => {
+  if (event.target.hasAttribute('data-id')) {
+    const id = event.target.getAttribute('data-id');
   
-const updateOrderForm= async () => {
-  document.location.replace(`/cart`);
-}
+  document.location.replace(`/update-comment/${id}`);
+}}
+  
+const updateOrderForm= async (event) => {
+  if (event.target.hasAttribute('data-id')) {
+    const id = event.target.getAttribute('data-id');
+  document.location.replace(`/update-cart/${id}`);
+}}
 
 let comment = document.querySelectorAll('#update-delete-button');
 comment.forEach(btn => {
@@ -18,4 +23,3 @@ let cart = document.querySelectorAll('#order-update-delete-button');
 cart.forEach(btn => {
   btn.addEventListener('click', updateOrderForm);
 })
-  
