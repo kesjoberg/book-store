@@ -3,8 +3,8 @@
 {{#each books as |book|}}
 <section class="book-card justify-space-around p-1">
   <a href="/book/{{id}}">
-    <header>{{title}}</header>
-    <img src={{bookCover}} id="book-img2">
+    <header class="book-header">{{title}}</header>
+    <img src={{bookCover}} id="book-img2" alt="book_cover_image">
   </a>
 </section>
 {{/each}}

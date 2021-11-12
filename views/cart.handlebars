@@ -1,20 +1,20 @@
 <div id="cart">
    <h4>Welcome to your cart! You can update or delete your orders here!</h4>
     {{#each order}}
-        <div class=" mb-3 single-book-card" >
-            <div class="row no-gutters">
-                <div class="col-md-4">
-                    <img src={{book.bookCover}} id="book-img">
+        <div class=" mb-3 single-book-card card-title" >
+            <div class="row no-gutters card-title">
+                <div class="col-md-4 card-title">
+                    <img src={{book.bookCover}} id="book-img" class="card-text">
                 </div>
-                <div class="col-md-8">
+                <div class="col-md-8 card-text">
                     <div class="card-body">
                         <h5 class="card-title">{{book.title}}</h5>
                         <p class="card-text">By: {{book.author}}</p>
-                        <p class="card-text"><small class="text-muted">Price: ${{book.price}}</small></p>
-                        <div>Quantity Ordered: {{quantity}}</div>
-                        <div>Total: ${{total}}</div>
+                        <p class="card-text"><small class="text-muted card-text">Price: ${{book.price}}</small></p>
+                        <div class="card-text">Quantity Ordered: {{quantity}}</div>
+                        <div class="card-text">Total: ${{total}}</div>
                         
-                         <button class="btn btn1" id="cart-btn" data-id="{{id}}" type="submit">Update Cart</button>
+                         <button class="btn btn1 card-text" id="cart-btn" data-id="{{id}}" type="submit">Update Cart</button>
                         
                     </div>
                 </div>

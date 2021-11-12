@@ -6,12 +6,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Book Store on 7th Street</title>
     <link rel="stylesheet" href="/css/jass.css">
+    
     <link rel="stylesheet" href="/css/style.css">
 </head>
 
 {{!-- // styling to header. look for jass.css --}}
 <body>
-  
+ 
     <header class="display-flex justify-space-between align-center p-2">
       <h1>
         <a href="/">Book store</a>
@@ -30,7 +31,8 @@
       </nav>
     </header>
     <main >
-      <div class="container flex-row justifiy-space-between">
+      
+      <div class="container display-flex justifiy-space-between">
         {{{body}}}
       </div>
     </main>
@@ -42,4 +44,5 @@
   {{#if logged_in}}
   <script src="/js/logout.js"></script>
   {{/if}}
+ 
 </html>

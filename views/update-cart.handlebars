@@ -1,25 +1,25 @@
  <div class=" mb-3 single-book-card" >
-            <div class="row no-gutters">
-                <div class="col-md-4">
+            <div class="row no-gutters card-body">
+                <div class="col-md-4 card-title">
                     <img src={{order.book.bookCover}} id="book-img">
                 </div>
-                <div class="col-md-8">
+                <div class="col-md-8 card-text">
                     <div class="card-body">
                         <h5 class="card-title">{{order.book.title}}</h5>
                         <p class="card-text">By: {{order.book.author}}</p>
-                        <p class="card-text"><small class="text-muted">Price: ${{order.book.price}}</small></p>
-                        <div>Quantity Ordered: {{order.quantity}}</div>
-                        <div>Total: ${{order.total}}</div>
-                        <form class="update-cart">
-                            <div>
+                        <p class="card-text"><small class="text-muted card-text">Price: ${{order.book.price}}</small></p>
+                        <div class="card-text">Quantity Ordered: {{order.quantity}}</div>
+                        <div class="card-text">Total: ${{order.total}}</div>
+                        <form class="update-cart card-body">
+                            <div class="card-body"> 
                                 <input type="hidden" name="order_id" id="order-id" value="{{order.id}}" />
                                 <input type="hidden" name="book1_id" id="book1_id" value="{{order.book.id}}" />
                                 <input type="hidden" name="book1_price" id="book1_price" value="{{order.book.price}}" />
                                 <input type="hidden" name="user_id" id="qty_user_id" value="{{user_id}}" />
-                                <label for"cart">Updated Quantity:</label>
+                                <label class="card-text" for"cart">Updated Quantity:</label>
                                 <input class="form-input" type="text" id="quantity">
                             </div>
-                            <div class="form-group">
+                            <div class="form-group card-body">
                                 <button class="btn btn1" id="cart-btn" data-id="{{order.id}}" type="submit">Update Cart</button>
                                 <button class="btn btn1" id="delete-btn" data-id="{{order.id}}" type="submit">Delete From Cart</button>
                             </div>

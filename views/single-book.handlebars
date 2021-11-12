@@ -1,14 +1,14 @@
 <div class=" mb-3 single-book-card" >
-  <div class="row no-gutters">
-    <div class="col-md-4">
-      <img src={{book.bookCover}} class="card-img" alt="book cover" style="max-width: 200px">
+  <div class="row no-gutters card-body">
+    <div class="col-md-4 card-title">
+      <img src={{book.bookCover}} class="card-img card-title" alt="book cover" style="max-width: 200px">
     </div>
-    <div class="col-md-8">
+    <div class="col-md-8 card-body">
       <div class="card-body">
         <h5 class="card-title">{{book.title}}</h5>
         <p class="card-text">By: {{book.author}}</p>
         <p class="card-text">Description: {{book.description}}</p>
-        <p class="card-text"><small class="text-muted">Price: ${{book.price}}</small></p>
+        <p class="card-text"><small class="text-muted card-text">Price: ${{book.price}}</small></p>
       </div>
     </div>
   </div>
@@ -19,15 +19,15 @@
 {{#each book.comments as |comment|}}
   <section class="comment-card">
       <div class="card-body">
-        <p>{{comment.body}}</p>
-        <p class="card-text"><small class="text-muted">User: {{comment.user.username}}</small></p>
+        <p class="card-text">{{comment.body}}</p>
+        <p class="card-text"><small class="text-muted card-text">User: {{comment.user.username}}</small></p>
 
       </div>
   </section>
 {{/each}}
 </section>
 
-<section class="container">
+<section class="container flex-column">
   <div class="comment-card-form">
     <form class="form comment-form" id="new-comment-form">
       <div>
